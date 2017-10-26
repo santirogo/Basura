@@ -1,13 +1,15 @@
 package com.crunchify.jsp.servlet;
- 
-import edu.co.sergio.mundo.dao.DepartamentoDAO;
+import edu.co.sergio.mundo.dao.EnviarMail;
 import edu.co.sergio.mundo.vo.Departamento;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
  
 /**
@@ -17,20 +19,15 @@ import javax.servlet.RequestDispatcher;
 public class HelloCrunchify extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // reading the user input
-        String id = request.getParameter("id");
-        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
         
-        //Se debe incluir validaciones - Lo recuerda: Gestion de Excepciones.
-        DepartamentoDAO dao = new DepartamentoDAO();
-        
-        Departamento departamento = new Departamento();
-        departamento.setId_departamento(Integer.parseInt(id));
-        departamento.setNom_departamento(nombre);
-        dao.insert(departamento);
-        
-        //Listando la informacion  
-        List<Departamento> departamentos =  dao.findAll();
-        request.setAttribute("departamentos", departamentos);
+        try {
+            EnviarMail e = new EnviarMail();
+            e.sendMail(correo);
+            
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(HelloCrunchify.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
        
         //Redireccionando la informacion
