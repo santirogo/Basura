@@ -29,7 +29,7 @@ public class HelloCrunchify extends HttpServlet {
             Logger.getLogger(HelloCrunchify.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-       
+       request.setAttribute("prueba", "pasó");
         //Redireccionando la informacion
         RequestDispatcher redireccion = request.getRequestDispatcher("index.jsp");
         redireccion.forward(request, response);

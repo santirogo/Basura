@@ -16,12 +16,18 @@ body {
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crunchify JSP Servlet Example</title>
 </head>
-<body>
+<body
+    
+    
+    
     <div align="center" style="margin-top: 50px;">
         <form action="CrunchifyServlet">
            correo:  <input type="text" name="correo" size="20px"> <br>
         <input type="submit" value="submit">
         </form>
      </div>
+    <%if(request.getAttribute("prueba")!= null){%>
+    <h1>jasbfbuivjasd{kjv na{sdv</h1>
+    <%}%>
 </body>
 </html>
