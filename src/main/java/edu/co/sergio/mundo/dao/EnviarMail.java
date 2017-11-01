@@ -13,13 +13,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class MailUtil {
+public class EnviarMail {
  
     private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
     private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
     private static final String SMTP_AUTH_PWD  = System.getenv("SENDGRID_PASSWORD");
  
-    public static void send(String fromEmail, String toEmail, String subject, String htmlContent) throws Exception{
+    public static void sendMail(String toEmail) throws Exception{
         Properties props = new Properties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.host", SMTP_HOST_NAME);
