@@ -21,13 +21,8 @@ public class HelloCrunchify extends HttpServlet {
         // reading the user input
         String correo = request.getParameter("correo");
         
-        try {
-            EnviarMail e = new EnviarMail();
-            e.sendMail(correo);
-            
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(HelloCrunchify.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        EnviarMail e = new EnviarMail();
+        e.sendMail(correo);
        
        request.setAttribute("prueba", "pasó");
         //Redireccionando la informacion
