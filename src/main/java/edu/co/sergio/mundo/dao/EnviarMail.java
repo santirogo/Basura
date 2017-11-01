@@ -15,7 +15,7 @@ public class EnviarMail {
     Content content = new Content("text/plain", "Hello, Email! <3");
     Mail mail = new Mail(from, subject, to, content);
 
-    SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+    SendGrid sg = new SendGrid(System.getenv("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"));
     Request request = new Request();
     try {
       request.method = Method.POST;
