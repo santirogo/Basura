@@ -1,33 +1,63 @@
 package edu.co.sergio.mundo.dao;
-import com.sendgrid.*;
-import java.io.IOException;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
-public class EnviarMail {
-  public EnviarMail(){
-    
-  }  
-    
-  public void enviarMail(String toAdd){
-    Email from = new Email("appumartsw@gmail.com");
-    String subject = "Hello World from the SendGrid Java Library!";
-    Email to = new Email("toAdd");
-    Content content = new Content("text/plain", "Hello, Email! <3");
-    Mail mail = new Mail(from, subject, to, content);
-
-    SendGrid sg = new SendGrid(System.getenv("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"));
-    Request request = new Request();
-    try {
-      request.method = Method.POST;
-      request.endpoint = "mail/send";
-      request.body = mail.build();
-      Response response = sg.api(request);
-      System.out.println(response.statusCode);
-      System.out.println(response.body);
-      System.out.println(response.headers);
-    } catch (IOException ex) {
-      throw ex;
+public class MailUtil {
+ 
+    private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
+    private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
+    private static final String SMTP_AUTH_PWD  = System.getenv("SENDGRID_PASSWORD");
+ 
+    public static void send(String fromEmail, String toEmail, String subject, String htmlContent) throws Exception{
+        Properties props = new Properties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.host", SMTP_HOST_NAME);
+        props.put("mail.smtp.port", 587);
+        props.put("mail.smtp.auth", "true");
+ 
+        Authenticator auth = new SMTPAuthenticator();
+        Session mailSession = Session.getDefaultInstance(props, auth);
+        // uncomment for debugging infos to stdout
+        // mailSession.setDebug(true);
+        Transport transport = mailSession.getTransport();
+ 
+        MimeMessage message = new MimeMessage(mailSession);
+ 
+        Multipart multipart = new MimeMultipart("alternative");
+ 
+        //BodyPart bodyPart = new MimeBodyPart();
+        //bodyPart.setContent(htmlContent, "text/html");
+        //multipart.addBodyPart(bodyPart);
+ 
+        //message.setContent("PRUEBAAAAAA");
+        message.setFrom(new InternetAddress("appumartsw@gmail.com"));
+        message.setSubject("PRUEBAAAA");
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+        message.setText("<3");
+      
+        transport.connect("appumartsw@gmail.com", "dondetusicompras");
+        transport.sendMessage(message,
+        message.getRecipients(Message.RecipientType.TO));
+        transport.close();
     }
-  }
+ 
+    private static class SMTPAuthenticator extends javax.mail.Authenticator {
+        public PasswordAuthentication getPasswordAuthentication() {
+            String username = SMTP_AUTH_USER;
+            String password = SMTP_AUTH_PWD;
+            return new PasswordAuthentication(username, password);
+        }
+    }
 }
 
