@@ -47,7 +47,7 @@ public class EnviarMail {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(toAdd));
-            message.addHeader("Disposition-Notification-To", "librarisoft@gmail.com");
+            message.addHeader("Disposition-Notification-To", "appumartsw@gmail.com");
             message.setSubject("Verificación de cuenta");
             message.setText("Tu código: "+this.cod);
 
