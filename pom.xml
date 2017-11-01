@@ -27,10 +27,15 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
-	
-        
-		<!-- JDBC Driver -->
-		<dependency>
+	<!-- https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java -->
+	<dependency>
+    		<groupId>com.sendgrid</groupId>
+    		<artifactId>sendgrid-java</artifactId>
+    		<version>4.1.2</version>
+	</dependency>
+
+	<!-- JDBC Driver -->
+	<dependency>
     		<groupId>postgresql</groupId>
     		<artifactId>postgresql</artifactId>
     		<version>9.0-801.jdbc4</version>
