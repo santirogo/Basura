@@ -28,12 +28,12 @@ public class EnviarMail {
 
     public void sendMail(String toAdd) {
         try {
-            // Propiedades de la conexi髇
+            // Propiedades de la conexi贸n
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "chuidiang@gmail.com");
+            props.setProperty("mail.smtp.user", "appumartsw@gmail.com");
             props.setProperty("mail.smtp.auth", "true");
 
             // Preparamos la sesion
@@ -47,8 +47,8 @@ public class EnviarMail {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(toAdd));
-            message.setSubject("Verificaci髇 de cuenta");
-            message.setText("Tu c骴igo: "+this.cod);
+            message.setSubject("Verificaci贸n de cuenta");
+            message.setText("Tu c贸digo: "+this.cod);
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
@@ -72,7 +72,7 @@ public class EnviarMail {
     public void sendCheckOut(String toAdd, ArrayList<String> orden){
     
         try {
-            // Propiedades de la conexi髇
+            // Propiedades de la conexi贸n
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
