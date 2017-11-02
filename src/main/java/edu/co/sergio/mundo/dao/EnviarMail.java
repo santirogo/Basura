@@ -6,26 +6,39 @@ import java.io.IOException;
 
 public class EnviarMail {
   public void sendMail(String toAdd) throws IOException {
-    Email from = new Email("appumartsw@gmail.com");
-    String subject = "Sending with SendGrid is Fun";
-    Email to = new Email(toAdd);
-      System.out.println("asss"+toAdd);
-    Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
-    Mail mail = new Mail(from, subject, to, content);
+    try {
+            // Propiedades de la conexión
+            Properties props = new Properties();
+            props.setProperty("mail.smtp.host", "smtp.sendgrid.net");
+            props.setProperty("mail.smtp.starttls.enable", "true");
+            props.setProperty("mail.smtp.port", "587");
+            props.setProperty("mail.smtp.user", "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");
+            props.setProperty("mail.smtp.auth", "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");
 
-    SendGrid sg = new SendGrid(System.getenv("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"));
-    Request request = new Request();
-//    try {
-//      request.setMethod(Method.GET);
-//      request.setEndpoint("mail/send");
-//      request.setBody(mail.build());
-//      Response response = sg.api(request);
-//      System.out.println(response.getStatusCode());
-//      System.out.println(response.getBody());
-//      System.out.println(response.getHeaders());
-//    } catch (IOException ex) {
-//      throw ex;
-//    }
+            // Preparamos la sesion
+            Session session = Session.getDefaultInstance(props);
+
+            // Construimos el mensaje
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("appumartsw@gmail.com"));
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(toAdd));
+            message.addHeader("Disposition-Notification-To", "appumartsw@gmail.com");
+            message.setSubject("Verificación de cuenta");
+            message.setText("Tu código: "+this.cod,"ISO-8859-1");
+
+            // Lo enviamos.
+            Transport t = session.getTransport("smtp");
+            t.connect("appumartsw@gmail.com", "dondetusicompras");
+            t.sendMessage(message, message.getAllRecipients());
+
+            // Cierre.
+            t.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
   }
 }
 
