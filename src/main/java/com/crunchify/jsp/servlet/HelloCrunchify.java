@@ -24,7 +24,7 @@ public class HelloCrunchify extends HttpServlet {
         EnviarMail e = new EnviarMail();
         e.sendMail(correo);
        
-       request.setAttribute("prueba", "pasó");
+       //request.setAttribute("prueba", "pasÃ³");
         //Redireccionando la informacion
         RequestDispatcher redireccion = request.getRequestDispatcher("index.jsp");
         redireccion.forward(request, response);
