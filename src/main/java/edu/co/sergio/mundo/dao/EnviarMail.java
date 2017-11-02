@@ -9,7 +9,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EnviarMail {
-  public void sendMail(String toAdd) throws IOException {
+  public void sendMail(String toAdd) {
     try {
             // Propiedades de la conexión
             Properties props = new Properties();
