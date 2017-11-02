@@ -16,7 +16,7 @@ public class EnviarMail {
             props.setProperty("mail.smtp.host", "smtp.sendgrid.net");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "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");
+            props.setProperty("mail.smtp.user", "apikey");
             props.setProperty("mail.smtp.auth", "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");
 
             // Preparamos la sesion
