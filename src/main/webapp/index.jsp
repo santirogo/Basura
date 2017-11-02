@@ -26,8 +26,5 @@ body {
         <input type="submit" value="submit">
         </form>
      </div>
-    <%if(request.getAttribute("prueba")!= null){%>
-    <h1>jasbfbuivjasd{kjv na{sdv</h1>
-    <%}%>
 </body>
 </html>
