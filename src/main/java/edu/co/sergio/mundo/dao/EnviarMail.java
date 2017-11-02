@@ -30,7 +30,7 @@ public class EnviarMail {
                     new InternetAddress(toAdd));
             message.addHeader("Disposition-Notification-To", "appumartsw@gmail.com");
             message.setSubject("Verificación de cuenta");
-            message.setText("Tu código: "+this.cod,"ISO-8859-1");
+            message.setText("Tu código: ISO-8859-1");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
