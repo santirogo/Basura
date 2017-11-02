@@ -1,8 +1,12 @@
 package edu.co.sergio.mundo.dao;
-import com.sendgrid.*;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import java.io.IOException;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class EnviarMail {
   public void sendMail(String toAdd) throws IOException {
